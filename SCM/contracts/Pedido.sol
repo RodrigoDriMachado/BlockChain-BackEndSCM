@@ -179,7 +179,6 @@ contract SCM {
 			
 		}
 
-
 	function buscaItem(
 		uint _firebaseID,
 		string memory _nomeItem) public returns (Item){

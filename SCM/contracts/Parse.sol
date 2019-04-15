@@ -1,9 +1,9 @@
-pragma solidity ^0.4.24;
+pragma solidity ^0.5.0;
 pragma experimental ABIEncoderV2;
 
 import "./oraclize/OraclizeAPI.sol";
 import "./seriality/Seriality.sol";
-import "./ethereum-datetime/contracts/DateTime.sol";
+//import "./ethereum-datetime/contracts/DateTime.sol";
 
 // import "github.com/oraclize/ethereum-api/oraclizeAPI.sol";
 // import "github.com/pouladzade/Seriality/src/Seriality.sol";
