@@ -1,5 +1,7 @@
-var Migrations = artifacts.require("./Migrations.sol");
+var Migration = artifacts.require("./Migrations.sol")
+var Standard = artifacts.require("./Pedido.sol");
+var Oraclize = artifacts.require("./OraclizeAPI.sol");
 
 module.exports = function(deployer) {
-  deployer.deploy(Migrations);
+  deployer.deploy(Migration)
 };
