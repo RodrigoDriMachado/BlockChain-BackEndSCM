@@ -45,6 +45,8 @@ contract SCM {
 	mapping(string => NotaFiscal) notaFsicalRegistries;
 	string[] public notaFiscalRegistriesAccts;
 
+	//Varejista
+	// metodo para creação de um pedido para fabricação de roupa
 	function createPedido (
 		string memory _firebaseId,
 		uint32 _idItem,
@@ -74,6 +76,8 @@ contract SCM {
 			}else return false;
 	}
 	
+	//varejista
+	// metodo para criação de item que será usado para fabricação no pedido
 	function createItem (
 		string memory _firebaseId,
 		uint _idItem,
@@ -98,6 +102,8 @@ contract SCM {
 			else return false;
 	}
 
+	//varejista
+	//metodo para cadastrar fornecedores que podem trabalhar em algum pedido
 	function createFornecedor (
 		string memory _firebaseID,
 		uint _idFornecedor,
@@ -118,6 +124,8 @@ contract SCM {
 			}else return false;
 	}
 
+	//Fornecedor
+	//metodo onde o fornecedor pode criar a nota fiscal do pedido
 	function createNotaFiscal (
 		string memory _firebaseID,
 		uint _idNota,
@@ -143,6 +151,8 @@ contract SCM {
 			}
 	}
 
+	// Fornecedor
+	// Metodo para atualizar informações da nota fiscal do pedido
 	function updateNotaFiscal (
 		string memory _firebaseID,
 		uint _idFornecedor,
@@ -207,6 +217,15 @@ contract SCM {
 		nf = registryNotaFiscal[_firebaseID];
 		pedidoRegistries.listaNF.push(listaNF);
 	} 
+
+	 function lookUpId (string _firebaseId) public view returns (bytes serialized) {
+        return getBytes(registries[_firebaseId]);
+    }
+
+    function lookUpSonsId (uint256 _sonId) public view returns (bytes serialized) {
+        return getBytes(sonsRegistries[_sonId]);
+    }
+
 	
 			
 }
