@@ -1,4 +1,5 @@
 pragma solidity ^0.5.0; 
+pragma experimental ABIEncoderV2;
 
 import "./Parse.sol";
 
@@ -37,6 +38,7 @@ contract Pedido is Parse {
 		uint idNota;
 		uint quantidadeItem;
 		uint valorTotal;
+		string descricao;
 		string creationDate;
 		Item[] listaItem;
 		Fornecedor[] listaFornecedor;
@@ -80,14 +82,16 @@ contract Pedido is Parse {
 			
 			
 			StandardInterface standard = StandardInterface(pedidoAddress);
+
 			if(standard.lookUpId(_firebaseId).length != 0) {
 				uint256 creationDate;
-				if(bytes(_creationDate).lenght != 0){
+				if(bytes(_creationDate).lenght !=0){
 					creationDate = getDateAsUnix(_creationDate);
-				}else creationDate = now;
+				}
+				else creationDate = now;
 
 				Pedido storage registryPedido = pedidoRegistries[_firebaseId];
-				registryPedido.descricao = _descricaoPedido;
+				registryPedido.descricaoPedido = _descricaoPedido;
 				pedidoRegistriesAccts.push(_firebaseId);
 				return true;
 			}else return false;
@@ -114,7 +118,7 @@ contract Pedido is Parse {
 					creationDate = getDateAsUnix(_creationDate);
 				}else creationDate = now;
 				registryItem.idItem = _idItem;
-				registryItem.descricao.nomeItem = _nomeItem;
+				registryItem.nomeItem = _nomeItem;
 				registryItem.descricao = _descricao;
 				registryItem.valUnitario = _valUnitario;
 				itemRegistriesAccts.push(_firebaseId);
@@ -144,7 +148,7 @@ contract Pedido is Parse {
 				}else creationDate = now;
 				registryFornecedor.idFornecedor = _idFornecedor;
 				registryFornecedor.nomeFornecedor = _nomeFornecedor;
-				fornecedorRegistries.push(_firebaseID);
+				fornecedoRegistriesAccts.push(_firebaseID);
 				registryLista.listaFornecedores.push(registryFornecedor);
 				return true;
 			}else return false;
@@ -157,24 +161,24 @@ contract Pedido is Parse {
 		uint _idNota,
 		string memory _nomeItem,
 		string memory _nomeFornecedor,
-		string memory descricaoItem,
 		string memory _creationDate
 		) public returns (bool){
 
-			Item _itemNota;
+		//	Item _itemNota;
 			Fornecedor _fornecedorNota;
 			NotaFiscal storage registryNotafiscal = notaFsicalRegistries[_firebaseID];
 			registryNotafiscal.idNota = _idNota;
 			StandardInterface standard = StandardInterface(notaFiscaladdress);
 			if(standard.lookUpId(_firebaseID).length != 0) {
-				uint256 creationDate;
-				if(bytes(_creationDate).lenght != 0){
-					creationDate = getDateAsUnix(_creationDate);
-				}else creationDate = now;
-			addItemToNF(_nomeItem);
-			_itemNota = buscaItem(_nomeItem);
-			registryNotafiscal.descricaoItem = _nomeItem.descricao;
+			//	uint256 creationDate;
+			//	if(bytes(_creationDate).lenght != 0){
+			//		creationDate = getDateAsUnix(_creationDate);
+			//	}else creationDate = now;
+			registryNotafiscal.descricao = buscaItem(_nomeItem).descricao;
 			registryNotafiscal.valorTotal = atualizaValTotal(_idNota);
+			bool _itemadd;
+			_itemadd = addItemToNF(_firebaseID, _nomeItem);
+			notaFiscalRegistriesAccts.push(_fireBaseID);
 			return true;
 			}
 	}
@@ -195,36 +199,40 @@ contract Pedido is Parse {
 				uint  valUnit =0 ;
 				Fornecedor _fornecedor;
 				_fornecedor = buscaFornecedor(_nomeFornecedor);
-				registryNotafiscal.valorTotal = atualizaValTotal(registryNotafiscal.idNota);
+				notaFsicalRegistries[_firebaseID].valorTotal = atualizaValTotal(notaFsicalRegistries[_firebaseID].idNota);
 			}
 			return true;
 	}
 
-	function addItemToNF (
-		string memory _item) public returns (bool){
-			Item itemTmp;
-			itemTmp = buscaItem(_item);
-			notaFsicalRegistries.listaItem.push(itemTmp);
-			atualizaValTotal();
-	}
+		function addItemToNF (
+			string _firebaseID,
+			string _nomeItem) public returns (bool){
+				notaFsicalRegistries[_firebaseID].listaItem.push(buscaItem(_nomeItem));
+				uint _valorTotal;
+				_valorTotal = atualizaValTotal(notaFsicalRegistries[_firebaseID].idNota);
+				notaFsicalRegistries[_firebaseID].valorTotal = _valorTotal;
+		}
 	
 	function addFornecedorToNF (
 		string memory _firebaseID,
 		string memory _nomeFornecedor) public{
-			Fornecedor _fornecedor = buscaFornecedor(_nomeFornecedor);
-			notaFsicalRegistries[_firebaseID].listaFornecedor.push(_fornecedor);
+			notaFsicalRegistries[_firebaseID].listaFornecedor.push(buscaFornecedor(_nomeFornecedor));
 		}
+
+		
 
 	function buscaItem(
 		string memory _nomeItem) public returns (Item){
-		Item _itemtmp;
-		for(uint i=0; i < listaRegistries.listaItens.lenght();i++){
-			if(listaRegistries.listaItens[i].nomeItem==_nomeItem){
-				_itemtmp = listaRegistries.listaItens[i];
+	
+		for(uint i=0; I < listaRegistriesAccts.lenght;i++){
+			string memory id = listaRegistriesAccts[i];
+            Item memory registry = itemRegistries[id];
+			if(compareStrings(itemRegistries.nomeItem, _nome)){
+					return registry;
+				}
 			}
+			return itemRegistries[1];
 		}
-		return _itemtmp;
-	}
 
 	function buscaFornecedor(
 		string _nomeFornec) public returns (Fornecedor){
@@ -305,10 +313,10 @@ contract Pedido is Parse {
 		offset = 64*(11 + registry.listaFornecedor.lenght);
 		buffer = new bytes(offset);
 
-		for(uint i = 0; i < registry.listaFornecedor.length; i++) {
-            string memory sonId = uint2str(registry.listaFornecedor[i]);
-            stringToBytes(offset, bytes(sonId), buffer);
-            offset -= sizeOfString(sonId);
+		for(uint b = 0; i < registry.listaFornecedor.length; b++) {
+            string memory sonId2 = uint2str(registry.listaFornecedor[b]);
+            stringToBytes(offset, bytes(sonId2), buffer);
+            offset -= sizeOfString(sonId2);
         }
 
 		string memory creationDate = uint2str(registry.creationDate);
@@ -331,10 +339,10 @@ contract Pedido is Parse {
 		offset = 64*(11 + registry.listaNF.lenght);
 		buffer = new bytes(offset);
  		
-		for(uint i = 0; i < registry.listaNF.length; i++) {
-            string memory sonId = uint2str(registry.listaNF[i]);
-            stringToBytes(offset, bytes(sonId), buffer);
-            offset -= sizeOfString(sonId);
+		for(uint b = 0; b < registry.listaNF.length; b++) {
+            string memory sonId2 = uint2str(registry.listaNF[b]);
+            stringToBytes(offset, bytes(sonId2), buffer);
+            offset -= sizeOfString(sonId2);
         }
 
 		stringToBytes(offset, bytes(registry.descricaoPedido), buffer);
