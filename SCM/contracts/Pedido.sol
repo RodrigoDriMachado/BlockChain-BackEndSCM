@@ -223,7 +223,6 @@ contract Pedido is Parse {
 
 	function buscaItem(
 		string memory _nomeItem) public returns (Item){
-	
 		for(uint i=0; I < listaRegistriesAccts.lenght;i++){
 			string memory id = listaRegistriesAccts[i];
             Item memory registry = itemRegistries[id];
@@ -238,7 +237,7 @@ contract Pedido is Parse {
 		string _nomeFornec) public returns (Fornecedor){
 			Fornecedor _fornecedor;
 			for(uint i =0; i < listaRegistries.listaFornecedores.lenght(); i++){
-				if(listaRegistries.listaFornecedores[i].nomeFornecedor == _nomeFornec){
+				if(compareStrings(listaRegistries.listaFornecedores[i].nomeFornecedor, _nomeFornec)){
 					_fornecedor = listaRegistries.listaFornecedores[i];
 				}					
 			}
