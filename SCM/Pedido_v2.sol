@@ -1,13 +1,14 @@
-pragma solidity ^0.4.24; 
+pragma solidity ^0.5.1; 
 pragma experimental ABIEncoderV2;
 
-import "./Parse.sol";
+//import "./Parse.sol";
 
 contract Pedido {
 
 	address pedidoAddress;
 	address notaFiscaladdress;
-
+    string[] public listaFornecedor;
+    NotaFiscal[] public listaNFPedido;
 
 	struct NotaFiscal {
 		uint idNota;
@@ -24,11 +25,11 @@ contract Pedido {
 
 	struct Pedido {
 		uint idPedido;
-		string descricaoPedido;
-		string tecido;	
-		string[] listaFornecedor;
+		string  descricaoPedido;
+		string  tecido;	
+	//	string[] listaFornecedor;
 		uint256 creationDate;
-		string[] listaNFPedido;
+	//	string[] listaNFPedido;
 	}
 
 	mapping(string => Pedido) pedidoRegistries;
@@ -49,7 +50,7 @@ contract Pedido {
 				Pedido storage registryPedido = pedidoRegistries[_firebaseId];
 				registryPedido.descricaoPedido = _descricaoPedido;
 				registryPedido.idPedido = _idPedido;
-				registryPedido.listaFornecedor.push(_nomeFornecedor);
+			    listaFornecedor.push(_nomeFornecedor);
 				pedidoRegistriesAccts.push(_firebaseId);
 				return true;
 
@@ -60,8 +61,8 @@ contract Pedido {
 	function createNotaFiscal (
 		string memory _firebaseID,
 		uint _idNota,
-		string _item,
-		string _descricaoItem,
+		string memory _item,
+		string memory _descricaoItem,
 		uint _quantidadeItem,
 		uint _valorUnitario,
 		uint _idPedido,
@@ -88,13 +89,9 @@ contract Pedido {
 	function addNotaToPedido(
 	    string memory _fireBaseIDNota,
 	    string memory _firebaseIDPedido) public {
-		//NotaFiscal memory  _nf;
-		//_nf = notaFsicalRegistries[_fireBaseIDNota] ;
-		pedidoRegistries[_firebaseIDPedido].listaNFPedido.push(_fireBaseIDNota);
+	    listaNFPedido.push(notaFsicalRegistries[_fireBaseIDNota]);
 	} 
 	
 	
-	function getItemNotaPedido(string _fireBaseIDNota) public returns(string){
-	    return "teste";
-	}
+	
 }
