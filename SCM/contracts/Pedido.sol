@@ -1,354 +1,158 @@
-pragma solidity ^0.5.0; 
+pragma solidity ^0.5.1;
+
 pragma experimental ABIEncoderV2;
 
-import "./Parse.sol";
+//import "./Parse.sol";
 
-contract StandardInterface {
-	function getAge(string _firebaseId) public view returns(uint age) {}
-   	function lookUpId(string _firebaseId) public view returns(bytes serialized) {}
-   	function createStandardregistry() public {}
-}
-
-contract NotificationsInterface {
-	    function sendMessage(string _recipientId, string _senderId, string _text) public {}
-}
-
-contract Pedido is Parse {
+contract Pedido {
 
 	address pedidoAddress;
-	address fornecedorAddress;
-	address itemAddress;
 	address notaFiscaladdress;
+    NotaFiscal[] public listaNFPedido;
+    Pedido[] public listaPedido;
+	Fornecedor[] public listaFornecedor;
+    Item[] public listaItem;
 
-	struct Fornecedor{
+    struct Fornecedor{
 		uint idFornecedor;
 		string nomeFornecedor;
-		string creationDate;
-	}
-
-	struct Item{
-		uint idItem;
-		string nomeItem;
-		string descricao;
-		uint valUnitario;
+		string emailFornecedor;
 		string creationDate;
 	}
 
 	struct NotaFiscal {
 		uint idNota;
-		uint quantidadeItem;
-		uint valorTotal;
-		string descricao;
-		string creationDate;
 		Item[] listaItem;
-		Fornecedor[] listaFornecedor;
-	}
-
-	struct Pedido {
+		string descricaoItem;
+		uint quantidadeItem;
+		uint valorUnitario;
+		uint valorTotal;
 		uint idPedido;
-		string descricaoPedido;
-		string tecido;	
-		Fornecedor[] listaFornecedor;
-		NotaFiscal[] listaNF;
+		uint256 creationDate;
+		string origem;
+		string destino;
 	}
 
-	struct Lista {
-		Fornecedor[] listaFornecedores;
-		Item[] listaItens;
+	struct Pedido{
+		uint idPedido;
+		string  descricaoPedido;
+		Fornecedor[] fornecedoresPedido;
+		NotaFiscal[] nfPeido;
+		string tecido;
+		uint256 creationDate;
+	}
+
+	struct Item{
+		uint idItem;
+		string nomeItem;
+		string descricaoItem;
 	}
 
 	mapping(string => Pedido) pedidoRegistries;
     string[] public pedidoRegistriesAccts;
 
-	mapping(string => Fornecedor) fornecedorRegistries;
-	string[] public fornecedoRegistriesAccts;
-
 	mapping(string => Item) itemRegistries;
-	string[] public itemRegistriesAccts;
+    string[] public itemRegistriesAccts;
+
+	mapping(string => Fornecedor) fornecedorRegistries;
+    string[] public fornecedorRegistriesAccts;
 
 	mapping(string => NotaFiscal) notaFsicalRegistries;
 	string[] public notaFiscalRegistriesAccts;
 
-	mapping(string => Lista) listaRegistries;
-    string[] public listaRegistriesAccts;
-
 
 	//Varejista
-	// metodo para creação de um pedido para fabricação de roupa
+	// metodo para criação de um pedido para fabricação de roupa
 	function createPedido (
 		string memory _firebaseId,
-		string memory _creationDate,
-		string memory _descricaoPedido) public returns (bool) {
+		string memory _firebaseIdFornecedor,
+		uint _idPedido,
+		string memory _tecido,
+		string memory _descricaoPedido,
+		string memory _nomeFornecedor
+		) public returns (bool) {
 			
-			
-			StandardInterface standard = StandardInterface(pedidoAddress);
-
-			if(standard.lookUpId(_firebaseId).length != 0) {
-				uint256 creationDate;
-				if(bytes(_creationDate).lenght !=0){
-					creationDate = getDateAsUnix(_creationDate);
-				}
-				else creationDate = now;
-
 				Pedido storage registryPedido = pedidoRegistries[_firebaseId];
 				registryPedido.descricaoPedido = _descricaoPedido;
+				registryPedido.idPedido = _idPedido;
+				registryPedido.tecido = _tecido;
 				pedidoRegistriesAccts.push(_firebaseId);
+				listaPedido.push(pedidoRegistries[_firebaseId]);
+				registryPedido.fornecedoresPedido.push(fornecedorRegistries[_firebaseIdFornecedor]);
 				return true;
-			}else return false;
-	}
-	
-	//varejista
-	// metodo para criação de item que será usado para fabricação no pedido
-	function createItem (
-		string memory _firebaseId,
-		uint _idItem,
-		string memory _nomeItem,
-		string memory _creationDate,
-		string memory _descricao,
-		uint _valUnitario) public returns (bool) {
-
-			Item storage registryItem = itemRegistries[_firebaseId];
-			Lista storage registryLista = listaRegistries[_firebaseId];
-
-			StandardInterface standard = StandardInterface(itemAddress);
-
-			if(standard.lookUpId(_firebaseId).length != 0) {
-				uint256 creationDate;
-				if(bytes(_creationDate).lenght != 0){
-					creationDate = getDateAsUnix(_creationDate);
-				}else creationDate = now;
-				registryItem.idItem = _idItem;
-				registryItem.nomeItem = _nomeItem;
-				registryItem.descricao = _descricao;
-				registryItem.valUnitario = _valUnitario;
-				itemRegistriesAccts.push(_firebaseId);
-				registryLista.listaItens.push(registryItem);
-				return true;
-			}
-			else return false;
 	}
 
-	//varejista
-	//metodo para cadastrar fornecedores que podem trabalhar em algum pedido
+	//Varejista
+	//metodo para cadastro de Fonrnecedor
 	function createFornecedor (
 		string memory _firebaseID,
 		uint _idFornecedor,
-		string memory _creationDate,
-		string memory _nomeFornecedor) public returns (bool){
+		string memory _nomeFornecedor,
+		string memory _emailFornecedor) public returns (bool){
 
 			Fornecedor storage registryFornecedor = fornecedorRegistries[_firebaseID];
-			Lista storage registryLista = listaRegistries[_firebaseID];
+			registryFornecedor.idFornecedor = _idFornecedor;
+		    registryFornecedor.nomeFornecedor = _nomeFornecedor;
+			registryFornecedor.emailFornecedor = _emailFornecedor;
+			fornecedorRegistriesAccts.push(_firebaseID);
+			listaFornecedor.push(fornecedorRegistries[_firebaseID]);
+		}
+	
+	//Varejista
+	//Metodo para criação do item
+	function createItem (
+		string memory _firebaseID,
+		uint _idItem,
+		string memory _nomeItem,
+		string memory _descricaoItem) public returns (bool){
 
-			StandardInterface standard = StandardInterface(fornecedorAddress);
+			Item storage registryItem = itemRegistries[_firebaseID];
+			registryItem.idItem = _idItem;
+		    registryItem.nomeItem = _nomeItem;
+			registryItem.descricaoItem = _descricaoItem;
+			itemRegistriesAccts.push(_firebaseID);
+			listaItem.push(itemRegistries[_firebaseID]);
+		}
 
-			if(standard.lookUpId(_firebaseID).length != 0) {
-				uint256 creationDate;
-				if(bytes(_creationDate).lenght != 0){
-					creationDate = getDateAsUnix(_creationDate);
-				}else creationDate = now;
-				registryFornecedor.idFornecedor = _idFornecedor;
-				registryFornecedor.nomeFornecedor = _nomeFornecedor;
-				fornecedoRegistriesAccts.push(_firebaseID);
-				registryLista.listaFornecedores.push(registryFornecedor);
-				return true;
-			}else return false;
-	}
-
-	//Fornecedor
-	//metodo onde o fornecedor pode criar a nota fiscal do pedido
 	function createNotaFiscal (
 		string memory _firebaseID,
 		uint _idNota,
-		string memory _nomeItem,
-		string memory _nomeFornecedor,
-		string memory _creationDate
+		uint _idItem,
+		string memory _descricaoItem,
+		uint _quantidadeItem,
+		uint _valorUnitario,
+		uint _idPedido,
+		string memory _origem,
+		string memory _destino
 		) public returns (bool){
-
-		//	Item _itemNota;
-			Fornecedor _fornecedorNota;
+			
 			NotaFiscal storage registryNotafiscal = notaFsicalRegistries[_firebaseID];
 			registryNotafiscal.idNota = _idNota;
-			StandardInterface standard = StandardInterface(notaFiscaladdress);
-			if(standard.lookUpId(_firebaseID).length != 0) {
-			//	uint256 creationDate;
-			//	if(bytes(_creationDate).lenght != 0){
-			//		creationDate = getDateAsUnix(_creationDate);
-			//	}else creationDate = now;
-			registryNotafiscal.descricao = buscaItem(_nomeItem).descricao;
-			registryNotafiscal.valorTotal = atualizaValTotal(_idNota);
-			bool _itemadd;
-			_itemadd = addItemToNF(_firebaseID, _nomeItem);
-			notaFiscalRegistriesAccts.push(_fireBaseID);
-			return true;
-			}
-	}
-
-	// Fornecedor
-	// Metodo para atualizar informações da nota fiscal do pedido
-	function updateNotaFiscal (
-		string memory _firebaseID,
-		uint _idFornecedor,
-		string memory _creationDate,
-		string memory _nomeFornecedor) public returns (bool){
-
-            if(notaFsicalRegistries[_firebaseID].creationDate != 0) {
-                uint256 creationDate;
-				if(bytes(_creationDate).length != 0) {
-					creationDate = getDateAsUnix(_creationDate);
-				}else creationDate = now;
-				uint  valUnit =0 ;
-				Fornecedor _fornecedor;
-				_fornecedor = buscaFornecedor(_nomeFornecedor);
-				notaFsicalRegistries[_firebaseID].valorTotal = atualizaValTotal(notaFsicalRegistries[_firebaseID].idNota);
-			}
-			return true;
-	}
-
-		function addItemToNF (
-			string _firebaseID,
-			string _nomeItem) public returns (bool){
-				notaFsicalRegistries[_firebaseID].listaItem.push(buscaItem(_nomeItem));
-				uint _valorTotal;
-				_valorTotal = atualizaValTotal(notaFsicalRegistries[_firebaseID].idNota);
-				notaFsicalRegistries[_firebaseID].valorTotal = _valorTotal;
-		}
-	
-	function addFornecedorToNF (
-		string memory _firebaseID,
-		string memory _nomeFornecedor) public{
-			notaFsicalRegistries[_firebaseID].listaFornecedor.push(buscaFornecedor(_nomeFornecedor));
-		}
-
-		
-
-	function buscaItem(
-		string memory _nomeItem) public returns (Item){
-		for(uint i=0; I < listaRegistriesAccts.lenght;i++){
-			string memory id = listaRegistriesAccts[i];
-            Item memory registry = itemRegistries[id];
-			if(compareStrings(itemRegistries.nomeItem, _nome)){
-					return registry;
+			for(uint iNota=0; iNota < listaItem.length; iNota ++){
+				if(listaItem[iNota].idItem == _idItem){
+					registryNotafiscal.descricaoItem = listaItem[iNota].descricaoItem;		
 				}
 			}
-			return itemRegistries[1];
-		}
+			registryNotafiscal.valorUnitario = _valorUnitario;
+			registryNotafiscal.quantidadeItem = _quantidadeItem;
+			registryNotafiscal.valorTotal = (_quantidadeItem * _valorUnitario);
+			registryNotafiscal.idPedido = _idPedido;
+			registryNotafiscal.origem = _origem;
+			registryNotafiscal.destino = _destino;
 
-	function buscaFornecedor(
-		string _nomeFornec) public returns (Fornecedor){
-			Fornecedor _fornecedor;
-			for(uint i =0; i < listaRegistries.listaFornecedores.lenght(); i++){
-				if(compareStrings(listaRegistries.listaFornecedores[i].nomeFornecedor, _nomeFornec)){
-					_fornecedor = listaRegistries.listaFornecedores[i];
-				}					
-			}
-				return _fornecedor;
+			notaFiscalRegistriesAccts.push(_firebaseID);
+			return true;
 	}
 
-	function atualizaValTotal(uint _idNota) public returns (uint){
-		uint _valTotal=0;
-		for (int i=0; notaFsicalRegistries.listaItem.lenght();i++){
-			if(notaFsicalRegistries.listaItem[i].idNota == _idNota){
-				_valTotal += notaFsicalRegistries.listaItem[i].valUnit;
-			}
-		}
-		return _valTotal;
+    function addNotaToPedido(
+	    string memory _fireBaseIDNota, uint _idPedido) public {
+	    listaNFPedido.push(notaFsicalRegistries[_fireBaseIDNota]);
+	    for(uint i=0; i < listaPedido.length; i++){
+	        if(listaPedido[i].idPedido == _idPedido){
+	            listaPedido[i].nfPeido.push(notaFsicalRegistries[_fireBaseIDNota]);
+	        }
+	    }
 	}
-
-	function addNotaToPedido(string memory _fireBaseID) public {
-		NotaFiscal memory _nf;
-		_nf = notaFsicalRegistries[_fireBaseID];
-		pedidoRegistries.listaNF.push(_nf);
-	} 
-
-	 function lookUpId (string _firebaseId) public view returns (bytes serialized) {
-        return getBytes(pedidoRegistries[_firebaseId]);
-    }
-
-    function lookUpSonsId (uint256 _sonId) public view returns (bytes serialized) {
-        return getBytes(pedidoRegistries[_sonId]);
-    }
-
-	function getBytes(Fornecedor registry) internal view returns (bytes serialized){
-        uint offset = 64*(13);
-        bytes memory buffer = new  bytes(offset);
-
-        stringToBytes(offset, bytes(registry.nomeFornecedor), buffer);
-        offset -= sizeOfString(registry.nomeFornecedor);
-
-		string memory creationDate = uint2str(registry.creationDate);
-        stringToBytes(offset, bytes(creationDate), buffer);
-        offset -= sizeOfString(creationDate);
-
-        return (buffer);
-    }
-
-	function getBytes(Item registry) internal view returns (bytes serialized){
-        uint offset = 64*(13);
-        bytes memory buffer = new  bytes(offset);
-
-        stringToBytes(offset, bytes(registry.nomeItem), buffer);
-        offset -= sizeOfString(registry.nomeItem);
-        
-        stringToBytes(offset, bytes(registry.descricao), buffer);
-        offset -= sizeOfString(registry.descricao);
-
-        string memory creationDate = uint2str(registry.creationDate);
-        stringToBytes(offset, bytes(creationDate), buffer);
-        offset -= sizeOfString(creationDate);
-
-        return (buffer);
-    }
-    
-    function getBytes(NotaFiscal registry) internal view returns (bytes serialized){
-    	uint offset = 64*(11 + registry.listaItem.length);
-        bytes memory buffer = new  bytes(offset);
-
-        for(uint i = 0; i < registry.listaItem.length; i++) {
-            string memory sonId = uint2str(registry.listaItem[i]);
-            stringToBytes(offset, bytes(sonId), buffer);
-            offset -= sizeOfString(sonId);
-		}
-
-		offset = 64*(11 + registry.listaFornecedor.lenght);
-		buffer = new bytes(offset);
-
-		for(uint b = 0; i < registry.listaFornecedor.length; b++) {
-            string memory sonId2 = uint2str(registry.listaFornecedor[b]);
-            stringToBytes(offset, bytes(sonId2), buffer);
-            offset -= sizeOfString(sonId2);
-        }
-
-		string memory creationDate = uint2str(registry.creationDate);
-        stringToBytes(offset, bytes(creationDate), buffer);
-        offset -= sizeOfString(creationDate);
-
-        return (buffer);
-    }
-
-	function getBytes(Pedido registry) internal view returns (bytes serialized){
-    	uint offset = 64*(11 + registry.listaItem.length);
-        bytes memory buffer = new  bytes(offset);
-
-        for(uint i = 0; i < registry.listaFornecedor.length; i++) {
-            string memory sonId = uint2str(registry.listaFornecedor[i]);
-            stringToBytes(offset, bytes(sonId), buffer);
-            offset -= sizeOfString(sonId);
-        }
-
-		offset = 64*(11 + registry.listaNF.lenght);
-		buffer = new bytes(offset);
- 		
-		for(uint b = 0; b < registry.listaNF.length; b++) {
-            string memory sonId2 = uint2str(registry.listaNF[b]);
-            stringToBytes(offset, bytes(sonId2), buffer);
-            offset -= sizeOfString(sonId2);
-        }
-
-		stringToBytes(offset, bytes(registry.descricaoPedido), buffer);
-        offset -= sizeOfString(registry.descricaoPedido);
-
-        return (buffer);
-    }
 	
-			
+
 }
