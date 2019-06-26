@@ -8,63 +8,64 @@
       "type": "constructor"
     }
   ],
-  "bytecode": "0x6080604052348015600f57600080fd5b50603580601d6000396000f3006080604052600080fd00a165627a7a72305820aa0f49667e0dc505a2f07816e2131baee2165e19c8494572d364d27eb4f555720029",
-  "deployedBytecode": "0x6080604052600080fd00a165627a7a72305820aa0f49667e0dc505a2f07816e2131baee2165e19c8494572d364d27eb4f555720029",
-  "sourceMap": "290:102:4:-;;;354:36;8:9:-1;5:2;;;30:1;27;20:12;5:2;354:36:4;290:102;;;;;;",
-  "deployedSourceMap": "290:102:4:-;;;;;",
-  "source": "pragma solidity ^0.4.16;\n\n/**\n * @title Seriality\n * @dev The Seriality contract is the main interface for serializing data using the TypeToBytes, BytesToType and SizeOf\n * @author pouladzade@gmail.com\n */\n \nimport \"./BytesToTypes.sol\";\nimport \"./TypesToBytes.sol\";\nimport \"./SizeOf.sol\";\n\ncontract Seriality is BytesToTypes, TypesToBytes, SizeOf {\n\n    function Seriality() public {\n\n    }\n}\n",
-  "sourcePath": "/Users/nathangavenski/Documents/PUCRS/TCC/contracts/contracts/seriality/Seriality.sol",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.8+commit.23d335f2\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/C/Users/00161615/Documents/project/scm-blockchain-backend-master/contracts/seriality/Seriality.sol\":\"Seriality\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/00161615/Documents/project/scm-blockchain-backend-master/contracts/seriality/BytesToTypes.sol\":{\"keccak256\":\"0x6c625c7cd0fb4cbe58a949be1b497cb6ddbd8b16f9e2081f9bc253851d55e964\",\"urls\":[\"bzzr://ff83e954aff9f2d54e787fdabfe81476ff060a995051df68dd9ba99ada1ce833\"]},\"/C/Users/00161615/Documents/project/scm-blockchain-backend-master/contracts/seriality/Seriality.sol\":{\"keccak256\":\"0xc6d4442a442093dad22674f47249e2e714aefd54bfefd8b1493b1ead801b0c63\",\"urls\":[\"bzzr://2e4a1f12b0d13ee758e6151ef6d3cf1aa30ac353a23bc3ed210aa60cb189779d\"]},\"/C/Users/00161615/Documents/project/scm-blockchain-backend-master/contracts/seriality/SizeOf.sol\":{\"keccak256\":\"0x2fda6e6eac0fa1789b1e37ca8a859c5c387675d564c5398c2e71dd1fc29c6e6d\",\"urls\":[\"bzzr://8355cc6281b7d5bbbec070db9f9089c1e3da252d55c3c290ac4dfdbb9a7b8f30\"]},\"/C/Users/00161615/Documents/project/scm-blockchain-backend-master/contracts/seriality/TypesToBytes.sol\":{\"keccak256\":\"0x20d22a44d5818ef063b78e932134bb894ae00c6710cd06ee68980ac1fa860e78\",\"urls\":[\"bzzr://cf1bde36fccdea8511fa3f60de890c4fa08025c863ad40b82acd6ec375f36beb\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b50603580601d6000396000f3fe6080604052600080fdfea165627a7a72305820ffcb6403db4f1a7f7c2bb2a330dabdae7d1da6e7e54807b1cca907b693a7562c0029",
+  "deployedBytecode": "0x6080604052600080fdfea165627a7a72305820ffcb6403db4f1a7f7c2bb2a330dabdae7d1da6e7e54807b1cca907b693a7562c0029",
+  "sourceMap": "289:95:5:-;;;353:29;8:9:-1;5:2;;;30:1;27;20:12;5:2;353:29:5;289:95;;;;;;",
+  "deployedSourceMap": "289:95:5:-;;;;;",
+  "source": "pragma solidity ^0.5.0;\n\n/**\n * @title Seriality\n * @dev The Seriality contract is the main interface for serializing data using the TypeToBytes, BytesToType and SizeOf\n * @author pouladzade@gmail.com\n */\n \nimport \"./BytesToTypes.sol\";\nimport \"./TypesToBytes.sol\";\nimport \"./SizeOf.sol\";\n\ncontract Seriality is BytesToTypes, TypesToBytes, SizeOf {\n\n    constructor() public {\n\n    }\n}\n",
+  "sourcePath": "C:\\Users\\00161615\\Documents\\project\\scm-blockchain-backend-master\\contracts\\seriality\\Seriality.sol",
   "ast": {
-    "absolutePath": "/Users/nathangavenski/Documents/PUCRS/TCC/contracts/contracts/seriality/Seriality.sol",
+    "absolutePath": "/C/Users/00161615/Documents/project/scm-blockchain-backend-master/contracts/seriality/Seriality.sol",
     "exportedSymbols": {
       "Seriality": [
-        7314
+        1982
       ]
     },
-    "id": 7315,
+    "id": 1983,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 7300,
+        "id": 1968,
         "literals": [
           "solidity",
           "^",
-          "0.4",
-          ".16"
+          "0.5",
+          ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:24:4"
+        "src": "0:23:5"
       },
       {
-        "absolutePath": "/Users/nathangavenski/Documents/PUCRS/TCC/contracts/contracts/seriality/BytesToTypes.sol",
+        "absolutePath": "/C/Users/00161615/Documents/project/scm-blockchain-backend-master/contracts/seriality/BytesToTypes.sol",
         "file": "./BytesToTypes.sol",
-        "id": 7301,
+        "id": 1969,
         "nodeType": "ImportDirective",
-        "scope": 7315,
-        "sourceUnit": 7299,
-        "src": "208:28:4",
+        "scope": 1983,
+        "sourceUnit": 1967,
+        "src": "207:28:5",
         "symbolAliases": [],
         "unitAlias": ""
       },
       {
-        "absolutePath": "/Users/nathangavenski/Documents/PUCRS/TCC/contracts/contracts/seriality/TypesToBytes.sol",
+        "absolutePath": "/C/Users/00161615/Documents/project/scm-blockchain-backend-master/contracts/seriality/TypesToBytes.sol",
         "file": "./TypesToBytes.sol",
-        "id": 7302,
+        "id": 1970,
         "nodeType": "ImportDirective",
-        "scope": 7315,
-        "sourceUnit": 7490,
-        "src": "237:28:4",
+        "scope": 1983,
+        "sourceUnit": 2138,
+        "src": "236:28:5",
         "symbolAliases": [],
         "unitAlias": ""
       },
       {
-        "absolutePath": "/Users/nathangavenski/Documents/PUCRS/TCC/contracts/contracts/seriality/SizeOf.sol",
+        "absolutePath": "/C/Users/00161615/Documents/project/scm-blockchain-backend-master/contracts/seriality/SizeOf.sol",
         "file": "./SizeOf.sol",
-        "id": 7303,
+        "id": 1971,
         "nodeType": "ImportDirective",
-        "scope": 7315,
-        "sourceUnit": 7391,
-        "src": "266:22:4",
+        "scope": 1983,
+        "sourceUnit": 2039,
+        "src": "265:22:5",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -74,167 +75,165 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 7304,
+              "id": 1972,
               "name": "BytesToTypes",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 7298,
-              "src": "312:12:4",
+              "referencedDeclaration": 1966,
+              "src": "311:12:5",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_BytesToTypes_$7298",
+                "typeIdentifier": "t_contract$_BytesToTypes_$1966",
                 "typeString": "contract BytesToTypes"
               }
             },
-            "id": 7305,
+            "id": 1973,
             "nodeType": "InheritanceSpecifier",
-            "src": "312:12:4"
+            "src": "311:12:5"
           },
           {
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 7306,
+              "id": 1974,
               "name": "TypesToBytes",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 7489,
-              "src": "326:12:4",
+              "referencedDeclaration": 2137,
+              "src": "325:12:5",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_TypesToBytes_$7489",
+                "typeIdentifier": "t_contract$_TypesToBytes_$2137",
                 "typeString": "contract TypesToBytes"
               }
             },
-            "id": 7307,
+            "id": 1975,
             "nodeType": "InheritanceSpecifier",
-            "src": "326:12:4"
+            "src": "325:12:5"
           },
           {
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 7308,
+              "id": 1976,
               "name": "SizeOf",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 7390,
-              "src": "340:6:4",
+              "referencedDeclaration": 2038,
+              "src": "339:6:5",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_SizeOf_$7390",
+                "typeIdentifier": "t_contract$_SizeOf_$2038",
                 "typeString": "contract SizeOf"
               }
             },
-            "id": 7309,
+            "id": 1977,
             "nodeType": "InheritanceSpecifier",
-            "src": "340:6:4"
+            "src": "339:6:5"
           }
         ],
         "contractDependencies": [
-          7298,
-          7390,
-          7489
+          1966,
+          2038,
+          2137
         ],
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 7314,
+        "id": 1982,
         "linearizedBaseContracts": [
-          7314,
-          7390,
-          7489,
-          7298
+          1982,
+          2038,
+          2137,
+          1966
         ],
         "name": "Seriality",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": {
-              "id": 7312,
+              "id": 1980,
               "nodeType": "Block",
-              "src": "382:8:4",
+              "src": "374:8:5",
               "statements": []
             },
             "documentation": null,
-            "id": 7313,
+            "id": 1981,
             "implemented": true,
-            "isConstructor": true,
-            "isDeclaredConst": false,
+            "kind": "constructor",
             "modifiers": [],
-            "name": "Seriality",
+            "name": "",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7310,
+              "id": 1978,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "372:2:4"
+              "src": "364:2:5"
             },
-            "payable": false,
             "returnParameters": {
-              "id": 7311,
+              "id": 1979,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "382:0:4"
+              "src": "374:0:5"
             },
-            "scope": 7314,
-            "src": "354:36:4",
+            "scope": 1982,
+            "src": "353:29:5",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 7315,
-        "src": "290:102:4"
+        "scope": 1983,
+        "src": "289:95:5"
       }
     ],
-    "src": "0:393:4"
+    "src": "0:385:5"
   },
   "legacyAST": {
-    "absolutePath": "/Users/nathangavenski/Documents/PUCRS/TCC/contracts/contracts/seriality/Seriality.sol",
+    "absolutePath": "/C/Users/00161615/Documents/project/scm-blockchain-backend-master/contracts/seriality/Seriality.sol",
     "exportedSymbols": {
       "Seriality": [
-        7314
+        1982
       ]
     },
-    "id": 7315,
+    "id": 1983,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 7300,
+        "id": 1968,
         "literals": [
           "solidity",
           "^",
-          "0.4",
-          ".16"
+          "0.5",
+          ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:24:4"
+        "src": "0:23:5"
       },
       {
-        "absolutePath": "/Users/nathangavenski/Documents/PUCRS/TCC/contracts/contracts/seriality/BytesToTypes.sol",
+        "absolutePath": "/C/Users/00161615/Documents/project/scm-blockchain-backend-master/contracts/seriality/BytesToTypes.sol",
         "file": "./BytesToTypes.sol",
-        "id": 7301,
+        "id": 1969,
         "nodeType": "ImportDirective",
-        "scope": 7315,
-        "sourceUnit": 7299,
-        "src": "208:28:4",
+        "scope": 1983,
+        "sourceUnit": 1967,
+        "src": "207:28:5",
         "symbolAliases": [],
         "unitAlias": ""
       },
       {
-        "absolutePath": "/Users/nathangavenski/Documents/PUCRS/TCC/contracts/contracts/seriality/TypesToBytes.sol",
+        "absolutePath": "/C/Users/00161615/Documents/project/scm-blockchain-backend-master/contracts/seriality/TypesToBytes.sol",
         "file": "./TypesToBytes.sol",
-        "id": 7302,
+        "id": 1970,
         "nodeType": "ImportDirective",
-        "scope": 7315,
-        "sourceUnit": 7490,
-        "src": "237:28:4",
+        "scope": 1983,
+        "sourceUnit": 2138,
+        "src": "236:28:5",
         "symbolAliases": [],
         "unitAlias": ""
       },
       {
-        "absolutePath": "/Users/nathangavenski/Documents/PUCRS/TCC/contracts/contracts/seriality/SizeOf.sol",
+        "absolutePath": "/C/Users/00161615/Documents/project/scm-blockchain-backend-master/contracts/seriality/SizeOf.sol",
         "file": "./SizeOf.sol",
-        "id": 7303,
+        "id": 1971,
         "nodeType": "ImportDirective",
-        "scope": 7315,
-        "sourceUnit": 7391,
-        "src": "266:22:4",
+        "scope": 1983,
+        "sourceUnit": 2039,
+        "src": "265:22:5",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -244,121 +243,125 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 7304,
+              "id": 1972,
               "name": "BytesToTypes",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 7298,
-              "src": "312:12:4",
+              "referencedDeclaration": 1966,
+              "src": "311:12:5",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_BytesToTypes_$7298",
+                "typeIdentifier": "t_contract$_BytesToTypes_$1966",
                 "typeString": "contract BytesToTypes"
               }
             },
-            "id": 7305,
+            "id": 1973,
             "nodeType": "InheritanceSpecifier",
-            "src": "312:12:4"
+            "src": "311:12:5"
           },
           {
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 7306,
+              "id": 1974,
               "name": "TypesToBytes",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 7489,
-              "src": "326:12:4",
+              "referencedDeclaration": 2137,
+              "src": "325:12:5",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_TypesToBytes_$7489",
+                "typeIdentifier": "t_contract$_TypesToBytes_$2137",
                 "typeString": "contract TypesToBytes"
               }
             },
-            "id": 7307,
+            "id": 1975,
             "nodeType": "InheritanceSpecifier",
-            "src": "326:12:4"
+            "src": "325:12:5"
           },
           {
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 7308,
+              "id": 1976,
               "name": "SizeOf",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 7390,
-              "src": "340:6:4",
+              "referencedDeclaration": 2038,
+              "src": "339:6:5",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_SizeOf_$7390",
+                "typeIdentifier": "t_contract$_SizeOf_$2038",
                 "typeString": "contract SizeOf"
               }
             },
-            "id": 7309,
+            "id": 1977,
             "nodeType": "InheritanceSpecifier",
-            "src": "340:6:4"
+            "src": "339:6:5"
           }
         ],
         "contractDependencies": [
-          7298,
-          7390,
-          7489
+          1966,
+          2038,
+          2137
         ],
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 7314,
+        "id": 1982,
         "linearizedBaseContracts": [
-          7314,
-          7390,
-          7489,
-          7298
+          1982,
+          2038,
+          2137,
+          1966
         ],
         "name": "Seriality",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": {
-              "id": 7312,
+              "id": 1980,
               "nodeType": "Block",
-              "src": "382:8:4",
+              "src": "374:8:5",
               "statements": []
             },
             "documentation": null,
-            "id": 7313,
+            "id": 1981,
             "implemented": true,
-            "isConstructor": true,
-            "isDeclaredConst": false,
+            "kind": "constructor",
             "modifiers": [],
-            "name": "Seriality",
+            "name": "",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 7310,
+              "id": 1978,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "372:2:4"
+              "src": "364:2:5"
             },
-            "payable": false,
             "returnParameters": {
-              "id": 7311,
+              "id": 1979,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "382:0:4"
+              "src": "374:0:5"
             },
-            "scope": 7314,
-            "src": "354:36:4",
+            "scope": 1982,
+            "src": "353:29:5",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 7315,
-        "src": "290:102:4"
+        "scope": 1983,
+        "src": "289:95:5"
       }
     ],
-    "src": "0:393:4"
+    "src": "0:385:5"
   },
   "compiler": {
     "name": "solc",
-    "version": "0.4.24+commit.e67f0147.Emscripten.clang"
+    "version": "0.5.8+commit.23d335f2.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "2.0.1",
-  "updatedAt": "2018-08-09T22:04:41.665Z"
+  "schemaVersion": "3.0.11",
+  "updatedAt": "2019-06-25T20:29:07.670Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
 }

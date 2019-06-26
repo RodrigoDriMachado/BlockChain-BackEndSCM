@@ -1,6 +1,5 @@
-pragma solidity ^0.4.6;
+pragma solidity ^0.5.0;
 
 contract StandardInterface {
-    function getAge(string _firebaseId) public view returns(uint age) {}
-    function lookUpId(string _firebaseId) public view returns(bytes serialized) {}
+    function lookUpId(string memory _firebaseId) public view returns(bytes memory serialized) {}
 }

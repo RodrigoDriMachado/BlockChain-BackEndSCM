@@ -1,4 +1,5 @@
-# personal-blockchain-backend
-This is the back-end part for [Luiz's](https://github.com/LHSV) and my undergraduate thesis.
+# Supplay Chain Management for BlockChain
 
-You can read my thesis at https://github.com/NathanGavenski/personal-blockchain-thesis
+This is the back-end part for [Rodrigo Machado](https://github.com/RodrigoDriMachado)
+
+You can read my thesis at https://github.com/RodrigoDriMachado/BlockChain-BackEndSCM

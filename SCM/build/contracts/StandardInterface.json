@@ -1,0 +1,298 @@
+{
+  "contractName": "StandardInterface",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "_firebaseId",
+          "type": "string"
+        }
+      ],
+      "name": "lookUpId",
+      "outputs": [
+        {
+          "name": "serialized",
+          "type": "bytes"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.8+commit.23d335f2\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[{\"name\":\"_firebaseId\",\"type\":\"string\"}],\"name\":\"lookUpId\",\"outputs\":[{\"name\":\"serialized\",\"type\":\"bytes\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/C/Users/00161615/Documents/project/scm-blockchain-backend-master/contracts/StandardInterface.sol\":\"StandardInterface\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/00161615/Documents/project/scm-blockchain-backend-master/contracts/StandardInterface.sol\":{\"keccak256\":\"0x7539e1a0bf2beffabe164fe975ccead3054a9ae87452db65fc457af6a1ff2bb6\",\"urls\":[\"bzzr://bb6ee04cf71fbecce441447c5dd25a37865d4b8e021872b2d973ca6e87be2864\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b50610197806100206000396000f3fe608060405234801561001057600080fd5b506004361061002b5760003560e01c8063494e5cc814610030575b600080fd5b6100e96004803603602081101561004657600080fd5b810190808035906020019064010000000081111561006357600080fd5b82018360208201111561007557600080fd5b8035906020019184600183028401116401000000008311171561009757600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f820116905080830192505050505050509192919290505050610164565b6040518080602001828103825283818151815260200191508051906020019080838360005b8381101561012957808201518184015260208101905061010e565b50505050905090810190601f1680156101565780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b606091905056fea165627a7a72305820cd08ec43f7e19bb8fe6b62acf71d0ae06b6b498fd69207b6298aceffde47c08b0029",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b506004361061002b5760003560e01c8063494e5cc814610030575b600080fd5b6100e96004803603602081101561004657600080fd5b810190808035906020019064010000000081111561006357600080fd5b82018360208201111561007557600080fd5b8035906020019184600183028401116401000000008311171561009757600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f820116905080830192505050505050509192919290505050610164565b6040518080602001828103825283818151815260200191508051906020019080838360005b8381101561012957808201518184015260208101905061010e565b50505050905090810190601f1680156101565780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b606091905056fea165627a7a72305820cd08ec43f7e19bb8fe6b62acf71d0ae06b6b498fd69207b6298aceffde47c08b0029",
+  "sourceMap": "25:127:3:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;25:127:3;;;;;;;",
+  "deployedSourceMap": "25:127:3:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;25:127:3;;;;;;;;;;;;;;;;;;;58:92;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;58:92:3;;;;;;;;;;21:11:-1;8;5:28;2:2;;;46:1;43;36:12;2:2;58:92:3;;35:9:-1;28:4;12:14;8:25;5:40;2:2;;;58:1;55;48:12;2:2;58:92:3;;;;;;100:9:-1;95:1;81:12;77:20;67:8;63:35;60:50;39:11;25:12;22:29;11:107;8:2;;;131:1;128;121:12;8:2;58:92:3;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;30:3:-1;22:6;14;1:33;99:1;93:3;85:6;81:16;74:27;137:4;133:9;126:4;121:3;117:14;113:30;106:37;;169:3;161:6;157:16;147:26;;58:92:3;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;58:92:3;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;123:23;58:92;;;:::o",
+  "source": "pragma solidity ^0.5.0;\n\ncontract StandardInterface {\n    function lookUpId(string memory _firebaseId) public view returns(bytes memory serialized) {}\n}",
+  "sourcePath": "C:/Users/00161615/Documents/project/scm-blockchain-backend-master/contracts/StandardInterface.sol",
+  "ast": {
+    "absolutePath": "/C/Users/00161615/Documents/project/scm-blockchain-backend-master/contracts/StandardInterface.sol",
+    "exportedSymbols": {
+      "StandardInterface": [
+        1186
+      ]
+    },
+    "id": 1187,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1177,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:3"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 1186,
+        "linearizedBaseContracts": [
+          1186
+        ],
+        "name": "StandardInterface",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 1184,
+              "nodeType": "Block",
+              "src": "148:2:3",
+              "statements": []
+            },
+            "documentation": null,
+            "id": 1185,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "lookUpId",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1180,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1179,
+                  "name": "_firebaseId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1185,
+                  "src": "76:25:3",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 1178,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "76:6:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "75:27:3"
+            },
+            "returnParameters": {
+              "id": 1183,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1182,
+                  "name": "serialized",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1185,
+                  "src": "123:23:3",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 1181,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "123:5:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "122:25:3"
+            },
+            "scope": 1186,
+            "src": "58:92:3",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 1187,
+        "src": "25:127:3"
+      }
+    ],
+    "src": "0:152:3"
+  },
+  "legacyAST": {
+    "absolutePath": "/C/Users/00161615/Documents/project/scm-blockchain-backend-master/contracts/StandardInterface.sol",
+    "exportedSymbols": {
+      "StandardInterface": [
+        1186
+      ]
+    },
+    "id": 1187,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1177,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:3"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 1186,
+        "linearizedBaseContracts": [
+          1186
+        ],
+        "name": "StandardInterface",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 1184,
+              "nodeType": "Block",
+              "src": "148:2:3",
+              "statements": []
+            },
+            "documentation": null,
+            "id": 1185,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "lookUpId",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1180,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1179,
+                  "name": "_firebaseId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1185,
+                  "src": "76:25:3",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 1178,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "76:6:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "75:27:3"
+            },
+            "returnParameters": {
+              "id": 1183,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1182,
+                  "name": "serialized",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1185,
+                  "src": "123:23:3",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 1181,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "123:5:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "122:25:3"
+            },
+            "scope": 1186,
+            "src": "58:92:3",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 1187,
+        "src": "25:127:3"
+      }
+    ],
+    "src": "0:152:3"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.8+commit.23d335f2.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.0.11",
+  "updatedAt": "2019-06-25T20:29:07.638Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}
