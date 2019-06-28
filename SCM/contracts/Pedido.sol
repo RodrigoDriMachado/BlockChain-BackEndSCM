@@ -19,7 +19,7 @@ contract Pedido is Parse {
     Item[] public listaItem;
 
     struct Fornecedor{
-	//	uint256 idFornecedor;
+		uint idFornecedor;
 		string nomeFornecedor;
 		string emailFornecedor;
 		string tipoFornecedor;
@@ -156,13 +156,13 @@ contract Pedido is Parse {
 	//metodo para cadastro de Fonrnecedor
 	function createFornecedor (
 		string memory _firebaseID,
-		//uint _idFornecedor,
+		uint _idFornecedor,
 		string memory _nomeFornecedor,
 		string memory _tipoFornecedor,
 		string memory _emailFornecedor) public returns (bool){
 
-			Fornecedor storage registryFornecedor = fornecedorRegistries[_firebaseID];
-			//registryFornecedor.idFornecedor = _idFornecedor;
+			Fornecedor storage registryFornecedor = fornecedorRegistries["1"];
+			registryFornecedor.idFornecedor = _idFornecedor;
 		    registryFornecedor.nomeFornecedor = _nomeFornecedor;
 			registryFornecedor.emailFornecedor = _emailFornecedor;
 			registryFornecedor.tipoFornecedor = _tipoFornecedor;

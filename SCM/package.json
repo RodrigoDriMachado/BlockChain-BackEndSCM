@@ -11,6 +11,6 @@
   "dependencies": {
     "python": "0.0.4",
     "solc": "^0.5.0",
-    "web3": "^1.0.0-beta.55"
+    "web3": "0.20.5"
   }
 }
